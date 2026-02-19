@@ -21,7 +21,7 @@
 *   **Career Context**: 兵庫県職員（管理監督職 / 宅建・建設業許認可担当）。
     *   **Timeline**: 役職定年まで残り2年。
     *   **Financial Goal**: 現在870万 → 目標950万（+80万）。退職後の収益基盤構築。
-*   **Interests**: スターリンク等の防災インフラ技術、進化心理学、行動経済学。AI活用（Fujin, Ritsuto, Ikehaya）。
+*   **Interests**: スターリンク等の防災インフラ技術、進化心理学、行動経済学。AI活用（Fujin, Ritsuto, Ikehaya）。社会批評（東浩紀的視座）。
 
 ## 2. Living Status (生活環境)
 *   **Location**: 兵庫県神戸市（元町・六甲エリア）
