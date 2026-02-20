@@ -8,6 +8,12 @@
 *   **Automation Engineering**: Python (pywin32, pyautogui, Tesseract), 業務効率化ツール開発。
 *   **Creative AI**: AI音楽生成 (Suno)、画像生成。
 *   **Web Development**: HTML/CSS/JS, GitHub Pages運用。
+*   **Remotion (動画生成)** (2026-02追加):
+    *   TSXベースのプログラマティック動画生成ツール。Scene分割・メトリクスカード等の構造化された動画コンポーネント設計を実践。
+*   **Agent Skills Design** (2026-02追加):
+    *   Antigravity環境において、エージェントに新しい能力を付与する「スキル」の設計・作成方法を習得（Transcriber等を自作）。
+*   **Discord Integration** (2026-02追加):
+    *   Webhookを活用したDiscord連携通知システムの構築。LINE代替として実装。
 *   **Health & Productivity**: Fujin式Opal運用, 呼吸瞑想 (Dラボ), 侵襲アクセプタンス。
 
 ## 2. 独自のノウハウ (Unique Know-how)
