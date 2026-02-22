@@ -32,38 +32,20 @@ echo [1/3] Python確認OK
 python --version
 echo.
 
-REM Tesseract OCRの確認
-echo [2/3] Tesseract OCRの確認...
-if exist "C:\Program Files\Tesseract-OCR\tesseract.exe" (
-    echo Tesseract OCR: インストール済み
-) else if exist "C:\Program Files (x86)\Tesseract-OCR\tesseract.exe" (
-    echo Tesseract OCR: インストール済み
+REM Gemini API Requirement check
+echo [2/3] APIキー用の.envファイルの確認...
+if not exist ".env" (
+    echo [注意] .envファイルが見つかりません。
+    echo 実行にはGEMINI_API_KEYの設定が必要です。
 ) else (
-    echo.
-    echo [重要] Tesseract OCRがインストールされていません。
-    echo.
-    echo 以下のURLからダウンロードしてインストールしてください：
-    echo https://github.com/UB-Mannheim/tesseract/wiki
-    echo.
-    echo ※ インストール時に「Japanese」言語パックを選択してください
-    echo ※ デフォルトのインストール先を推奨します
-    echo.
-    echo インストール完了後、このスクリプトを再実行してください。
-    echo.
-    
-    set /p OPEN_URL="ダウンロードページを開きますか？ (y/n): "
-    if /i "%OPEN_URL%"=="y" (
-        start https://github.com/UB-Mannheim/tesseract/wiki
-    )
-    pause
-    exit /b 1
+    echo .envファイル: 存在します
 )
 echo.
 
 REM Python依存関係のインストール
 echo [3/3] Python依存関係のインストール...
 echo.
-pip install pyautogui pillow pytesseract pywin32
+pip install pyautogui pillow pywin32 google-generativeai python-dotenv
 
 if errorlevel 1 (
     echo.

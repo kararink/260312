@@ -8,13 +8,22 @@ Kindle OCR Tool (High Precision Edition)
 import os
 import sys
 import time
+import io
+import logging
 from datetime import datetime
 from pathlib import Path
 
+# gRPC/protobufの不要な警告ログを抑制
+os.environ["GRPC_VERBOSITY"] = "ERROR"
+os.environ["GLOG_minloglevel"] = "2"
+logging.getLogger("google").setLevel(logging.ERROR)
+logging.getLogger("grpc").setLevel(logging.ERROR)
+
 try:
     import pyautogui
-    from PIL import Image, ImageOps, ImageEnhance
-    import pytesseract
+    from PIL import Image
+    import google.generativeai as genai
+    from dotenv import load_dotenv
     import win32gui
     import win32con
     HAS_WIN32 = True
@@ -24,46 +33,37 @@ except ImportError as e:
     input("Enterキーで終了...")
     sys.exit(1)
 
-# Tesseractパス設定
-TESSERACT_PATHS = [
-    r"C:\Program Files\Tesseract-OCR\tesseract.exe",
-    r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe",
-    os.path.join(os.getenv('LOCALAPPDATA', ''), r'Programs\Tesseract-OCR\tesseract.exe'),
-]
+# 環境変数の読み込み
+env_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path=env_path)
 
-def find_tesseract():
-    for path in TESSERACT_PATHS:
-        if os.path.exists(path):
-            return path
-    return None
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-def setup_tesseract():
-    path = find_tesseract()
-    if not path:
-        print("エラー: Tesseract OCRが見つかりません。")
-        print("https://github.com/UB-Mannheim/tesseract/wiki からインストールしてください。")
+def setup_gemini():
+    if not GEMINI_API_KEY:
+        print("エラー: GEMINI_API_KEY が .env に設定されていません。")
+        print(f"[{env_path}] に GEMINI_API_KEY=あなたのキー を追記してください。")
         return False
-    pytesseract.pytesseract.tesseract_cmd = path
+    genai.configure(api_key=GEMINI_API_KEY)
     return True
 
-def preprocess_image(image):
-    """OCR精度向上のための画像前処理"""
-    # 1. グレースケール変換
-    img = ImageOps.grayscale(image)
+def postprocess_text(text):
+    """OCRのよくある誤認識（文字化け）を辞書ベースで置換補正する"""
+    replacements = {
+        # 典型的な誤読パターン
+        "粟田": "栗田",
+        "周五朗": "周五郎",
+        "朗読": "朗読", # "朗"を全て"郎"に変えないための防波堤（必要に応じて）
+        "~": "〜", # 波線
+        "| ": "", # 不要な縦線の除去
+        " \n": "\n", # 行末スペースの除去
+    }
     
-    # 2. 画像を2倍に拡大（小さい文字の認識率向上）
-    width, height = img.size
-    img = img.resize((width * 2, height * 2), Image.Resampling.LANCZOS)
-    
-    # 3. コントラストを強調
-    enhancer = ImageEnhance.Contrast(img)
-    img = enhancer.enhance(2.0)
-    
-    # 4. 二値化（しきい値処理）- 文字をくっきりさせる
-    # img = img.point(lambda x: 0 if x < 140 else 255) 
-    # ※背景色によっては逆効果になることがあるので、一旦コントラスト強調までにする
-    
-    return img
+    corrected_text = text
+    for old, new in replacements.items():
+        corrected_text = corrected_text.replace(old, new)
+        
+    return corrected_text
 
 def find_kindle_window():
     """Kindleウィンドウを探す（自分自身は除外）"""
@@ -110,31 +110,34 @@ def capture_target():
             pass
     return pyautogui.screenshot()
 
-def extract_text(image):
-    """日本語OCR実行"""
-    # 読み取り精度重視の設定
-    # --oem 3: Default OCR Engine
-    # --psm 6: Assume a single uniform block of text
-    config = r'--oem 3 --psm 6'
+def extract_text_with_gemini(image):
+    """Gemini APIを使用して画像からテキストを高精度に抽出する"""
     try:
-        return pytesseract.image_to_string(image, lang='jpn', config=config).strip()
-    except:
-        # 日本語だけだと失敗する場合、英語混じりで再トライ
-        try:
-            return pytesseract.image_to_string(image, lang='jpn+eng', config=config).strip()
-        except Exception as e:
-            return f"[OCR Error] {e}"
+        # モデルの初期化 (Gemini 2.5 Flashが高速で最適)
+        model = genai.GenerativeModel('gemini-2.5-flash')
+        
+        prompt = (
+            "提供された画像に含まれる文章を、一言一句正確に文字起こししてください。"
+            "縦書き、横書き、ルビ（フリガナ）、複雑なレイアウトであっても、意味が通るように自然なテキストテキストとして出力してください。"
+            "ページ番号やKindleのUI（ツールバーなど）のシステム文字は除外して、本文のみを抽出してください。"
+            "出力は抽出したテキストのみとし、説明や挨拶は絶対に含めないでください。"
+        )
+        
+        response = model.generate_content([prompt, image])
+        return response.text.strip()
+    except Exception as e:
+        return f"[Gemini API Error] {e}"
 
 def main():
-    if not setup_tesseract():
+    if not setup_gemini():
         input("Enterキーで終了...")
         return
 
     print("="*60)
-    print("  Kindle OCR Tool - High Precision Mode")
+    print("  Kindle OCR Tool - Gemini Vision Edition")
     print("="*60)
-    print("  画像の拡大・補正処理を追加しました。")
-    print("  より高精度に文字を認識します。")
+    print("  AI (Gemini) の視覚機能を使用して画像を解析します。")
+    print("  縦書きや複雑なレイアウトも高精度に文字起こしします。")
     print("-" * 60)
 
     # 同意確認
@@ -188,21 +191,15 @@ def main():
             print("  📸 キャプチャ中...", end="\r")
             img = capture_target()
             
-            print("  ⚙️ 画像補正中...  ", end="\r")
-            processed_img = preprocess_image(img)
+            print("  🤖 Geminiで解析中... (数秒かかります)", end="\r")
+            text = extract_text_with_gemini(img)
             
-            # デバッグ用に画像保存（オプション）
-            # processed_img.save("debug_last_capture.png")
-            
-            print("  📝 文字読取中...  ", end="\r")
-            text = extract_text(processed_img)
-            
-            if text:
+            if text and not text.startswith("[Gemini API Error]"):
                 pages.append(text)
-                print(f"  ✅ 完了 ({len(text)}文字)")
+                print(f"  ✅ 完了 ({len(text)}文字)                 ")
                 print(f"  プレビュー: {text[:40].replace(chr(10), ' ')}...")
             else:
-                print("  ⚠️ 文字を読み取れませんでした")
+                print(f"  ⚠️ 読み取り失敗: {text}               ")
         
     input("\n終了するにはEnterを押してください...")
 
