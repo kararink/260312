@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>声の羅針盤 — あなたの書き手としての声を見つける</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f5f0e8;
+    --aged: #e8dfc8;
+    --accent: #c0392b;
+    --gold: #b8860b;
+    --muted: #8a7d6b;
+    --highlight: #fdf3e3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif JP', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Textured paper background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(180,160,120,0.08) 28px, rgba(180,160,120,0.08) 29px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  /* Header */
+  .compass-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeIn 1s ease;
+  }
+
+  .compass-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+  }
+
+  .compass-icon svg {
+    width: 100%;
+    height: 100%;
+    animation: slowRotate 20s linear infinite;
+  }
+
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    font-family: 'DM Mono', monospace;
+    font-style: italic;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .divider-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* Progress */
+  .progress-bar {
+    background: var(--aged);
+    height: 4px;
+    border-radius: 2px;
+    margin-bottom: 3rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--gold), var(--accent));
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .step-indicator {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: right;
+    margin-top: -2.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Sections */
+  .section {
+    display: none;
+    animation: slideIn 0.5s ease;
+  }
+
+  .section.active {
+    display: block;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .section-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  /* Prompts & Textareas */
+  .prompt-card {
+    background: white;
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 2px 4px 20px rgba(0,0,0,0.06);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .prompt-q {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  textarea {
+    width: 100%;
+    border: 1px solid var(--aged);
+    background: var(--highlight);
+    padding: 0.9rem 1rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--ink);
+    resize: vertical;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 90px;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,134,11,0.1);
+  }
+
+  textarea::placeholder {
+    color: #bbb;
+    font-style: italic;
+  }
+
+  /* Slider trait cards */
+  .trait-grid {
+    display: grid;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .trait-card {
+    background: white;
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 2px 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .trait-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .trait-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 4px;
+    background: var(--aged);
+    border-radius: 2px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gold);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: transform 0.15s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+
+  /* Checklist */
+  .checklist {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: white;
+    padding: 1rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 2px 3px 12px rgba(0,0,0,0.05);
+    transition: background 0.2s, transform 0.15s;
+    border: 2px solid transparent;
+  }
+
+  .check-item:hover {
+    transform: translateX(3px);
+    border-color: var(--aged);
+  }
+
+  .check-item.checked {
+    border-color: var(--gold);
+    background: #fffbf0;
+  }
+
+  .check-box {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid var(--aged);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .check-box::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .check-item.checked .check-box::after {
+    opacity: 1;
+  }
+
+  .check-label {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .check-label strong {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .check-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* Navigation Buttons */
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.8rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--aged);
+  }
+
+  .btn-secondary:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    color: white;
+    font-size: 0.85rem;
+    padding: 1rem 2.5rem;
+  }
+
+  .btn-accent:hover {
+    background: #a93226;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(192,57,43,0.3);
+  }
+
+  /* Result Card */
+  .result-card {
+    background: white;
+    border-radius: 6px;
+    box-shadow: 4px 8px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .result-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .result-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .result-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .result-body {
+    padding: 2rem;
+  }
+
+  .voice-trait-bar {
+    margin-bottom: 1.5rem;
+  }
+
+  .voice-trait-bar .label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .voice-trait-bar .label-row span:first-child {
+    font-weight: 600;
+  }
+
+  .voice-trait-bar .label-row span:last-child {
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+  }
+
+  .bar-track {
+    background: var(--aged);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(to right, var(--gold), var(--accent));
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tips-section {
+    background: var(--highlight);
+    border-top: 1px solid var(--aged);
+    padding: 2rem;
+  }
+
+  .tips-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .tip-item {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .tip-num {
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    font-size: 0.75rem;
+    min-width: 1.5rem;
+    padding-top: 0.15rem;
+  }
+
+  .habits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .habit-card {
+    background: white;
+    border-radius: 4px;
+    padding: 1rem;
+    border-top: 3px solid var(--gold);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .habit-card .habit-title {
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .habit-card .habit-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .copy-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 2rem 1.2rem 4rem; }
+    h1 { font-size: 1.8rem; }
+    .habits-grid { grid-template-columns: 1fr; }
+    .nav-buttons { flex-direction: column; }
+    .btn { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="compass-header">
+    <div class="compass-icon">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" stroke="#b8860b" stroke-width="1.5"/>
+        <circle cx="32" cy="32" r="22" stroke="#b8860b" stroke-width="0.75" stroke-dasharray="3 4"/>
+        <polygon points="32,6 35,30 32,36 29,30" fill="#c0392b"/>
+        <polygon points="32,58 35,34 32,28 29,34" fill="#1a1410"/>
+        <circle cx="32" cy="32" r="3" fill="#b8860b"/>
+      </svg>
+    </div>
+    <h1>声の羅針盤</h1>
+    <p class="subtitle">your writing voice compass</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+
+  <!-- Progress -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="step-indicator" id="stepIndicator">STEP 1 / 5</div>
+
+  <!-- STEP 1: 価値観の発掘 -->
+  <div class="section active" id="step1">
+    <div class="section-label">Step 01 — 価値観の発掘</div>
+    <div class="section-title">あなたが「どうしても言いたいこと」は何ですか？</div>
+    <p class="section-desc">声は、言葉のスタイルではなく、あなたが何を信じているかから生まれます。</p>
+
+    <div class="prompt-card">
+      <p class="prompt-q">📌 もし世界中のフォロワーに向けて、1分だけ話せるとしたら——何を伝えますか？</p>
+      <textarea id="q1a" rows="3" placeholder="思いつくまま、荒削りでいい…"></textarea>
+    </div>
+
+    <div class="prompt-card">
+      <p class="prompt-q">📌 あなたが「これは違う」と強く感じる考え方や風潮は？</p>
+      <textarea id="q1b" rows="3" placeholder="小さな違和感でも大丈夫…"></textarea>
+    </div>
+
+    <div class="prompt-card">
+      <p class="prompt-q">📌 あなたが記事を書く（または書きたい）本当の理由は？</p>
+      <textarea id="q1c" rows="3" placeholder="承認欲求でも、使命感でも、正直に…"></textarea>
+    </div>
+
+    <div class="nav-buttons">
+      <span></span>
+      <button class="btn btn-primary" onclick="goStep(2)">次へ →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: 話し方のトーン -->
+  <div class="section" id="step2">
+    <div class="section-label">Step 02 — トーンの地図</div>
+    <div class="section-title">あなたの声の「温度と角度」を調整する</div>
+    <p class="section-desc">スライダーを動かして、あなたが目指す書き方に近い位置に合わせてください。「理想」でOK。</p>
+
+    <div class="trait-grid">
+      <div class="trait-card">
+        <div class="trait-name">📖 文体の密度</div>
+        <div class="trait-labels"><span>シンプル・簡潔</span><span>濃密・詩的</span></div>
+        <input type="range" id="t1" min="0" max="100" value="50">
+      </div>
+      <div class="trait-card">
+        <div class="trait-name">🌡️ 感情の温度</div>
+        <div class="trait-labels"><span>クール・論理的</span><span>ウォーム・感情的</span></div>
+        <input type="range" id="t2" min="0" max="100" value="50">
+      </div>
+      <div class="trait-card">
+        <div class="trait-name">🎯 立場の強さ</div>
+        <div class="trait-labels"><span>中立・客観的</span><span>主張が強い</span></div>
+        <input type="range" id="t3" min="0" max="100" value="50">
+      </div>
+      <div class="trait-card">
+        <div class="trait-name">😊 ユーモアの量</div>
+        <div class="trait-labels"><span>真面目・誠実</span><span>笑いを交える</span></div>
+        <input type="range" id="t4" min="0" max="100" value="40">
+      </div>
+      <div class="trait-card">
+        <div class="trait-name">🔍 視点の距離</div>
+        <div class="trait-labels"><span>個人的・私的</span><span>社会的・俯瞰的</span></div>
+        <input type="range" id="t5" min="0" max="100" value="50">
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goStep(1)">← 戻る</button>
+      <button class="btn btn-primary" onclick="goStep(3)">次へ →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: 影響源の棚卸し -->
+  <div class="section" id="step3">
+    <div class="section-label">Step 03 — 影響源の棚卸し</div>
+    <div class="section-title">あなたの声を育てた「人・作品・経験」</div>
+    <p class="section-desc">誰かのまねをするためではなく、自分の源泉を知るために。</p>
+
+    <div class="prompt-card">
+      <p class="prompt-q">✍️ 「こんなふうに書きたい」と思った書き手・作品・アカウントを3つ挙げるとしたら？（なぜか理由も少し）</p>
+      <textarea id="q3a" rows="4" placeholder="例：村上春樹のあの距離感が好き / Aさんのブログの正直さに救われた…"></textarea>
+    </div>
+
+    <div class="prompt-card">
+      <p class="prompt-q">✍️ 書くことに影響を与えた「人生の経験」や「転換点」は？</p>
+      <textarea id="q3b" rows="4" placeholder="例：会社を辞めた時 / 海外に住んでみて…"></textarea>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goStep(2)">← 戻る</button>
+      <button class="btn btn-primary" onclick="goStep(4)">次へ →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: 障害のチェックリスト -->
+  <div class="section" id="step4">
+    <div class="section-label">Step 04 — 自分らしさを邪魔するもの</div>
+    <div class="section-title">「声が出てこない」原因に心当たりはありますか？</div>
+    <p class="section-desc">当てはまると感じるものをチェックしてください。複数でも、全部でもOK。</p>
+
+    <div class="checklist">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>「読まれるか」が気になりすぎる</strong><span class="check-sub">バズや再生数を意識して、書きたいことより「受ける内容」を選んでしまう</span></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>「誰かのまね」になっている感覚</strong><span class="check-sub">好きな書き手のスタイルが自分に混ざってしまい、消化しきれていない</span></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>「ちゃんと書かないと」という圧力</strong><span class="check-sub">誤りや批判を恐れて、角のある表現を削ってしまう</span></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>テーマが広すぎてぼやける</strong><span class="check-sub">何でも書こうとするあまり、特徴が薄くなっている</span></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>読者像がつかめていない</strong><span class="check-sub">誰に向けて書いているかが曖昧で、トーンが定まらない</span></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>書くことへの疲れ・義務感</strong><span class="check-sub">「発信しなければ」という義務感で書いており、楽しめていない</span></div>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goStep(3)">← 戻る</button>
+      <button class="btn btn-accent" onclick="generateResult()">🧭 声のプロフィールを見る</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: 結果 -->
+  <div class="section" id="step5">
+    <div class="section-label">Step 05 — あなたの声のプロフィール</div>
+    <div class="section-title">発見した羅針盤</div>
+    <p class="section-desc">これは正解ではなく、出発点です。書き続けるほど、声は本物になっていきます。</p>
+
+    <div class="result-card" id="resultCard">
+      <div class="result-header">
+        <div class="result-type">YOUR VOICE TYPE</div>
+        <div class="result-title" id="voiceTypeName">——</div>
+        <p style="margin-top:0.5rem;font-size:0.85rem;color:#c9b99a;letter-spacing:0.05em;" id="voiceTypeDesc"></p>
+      </div>
+      <div class="result-body">
+        <div id="traitBars"></div>
+        <div class="tips-section">
+          <div class="tips-title">🪴 あなたの声を育てる処方箋</div>
+          <div id="tipsList"></div>
+          <div class="habits-grid" id="habitsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="btn btn-secondary" onclick="goStep(1)" style="margin-right:1rem;">← やり直す</button>
+      <button class="btn btn-primary" onclick="window.print()">🖨️ 印刷・保存</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  function goStep(n) {
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    currentStep = n;
+    document.getElementById(`step${currentStep}`).classList.add('active');
+    const pct = ((n - 1) / (totalSteps - 1)) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('stepIndicator').textContent = `STEP ${n} / ${totalSteps}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+  }
+
+  function getTraitLabel(val) {
+    if (val < 25) return '低め';
+    if (val < 50) return 'やや低め';
+    if (val < 75) return 'やや高め';
+    return '高め';
+  }
+
+  function generateResult() {
+    const t1 = parseInt(document.getElementById('t1').value);
+    const t2 = parseInt(document.getElementById('t2').value);
+    const t3 = parseInt(document.getElementById('t3').value);
+    const t4 = parseInt(document.getElementById('t4').value);
+    const t5 = parseInt(document.getElementById('t5').value);
+
+    // Determine voice type
+    let voiceType, voiceDesc;
+    const warmth = t2;
+    const assertion = t3;
+    const density = t1;
+
+    if (warmth >= 60 && assertion >= 60) {
+      voiceType = "🔥 情熱の語り手";
+      voiceDesc = "強い主張と温かさで読者を動かすタイプ。あなたの「怒り」と「愛」が武器です。";
+    } else if (warmth >= 60 && assertion < 50) {
+      voiceType = "🌿 伴走する友人";
+      voiceDesc = "押し付けず、寄り添う。読者は「わかってくれる人」としてあなたを選びます。";
+    } else if (warmth < 45 && assertion >= 60) {
+      voiceType = "⚡ 論客・構造家";
+      voiceDesc = "クールな視点と切れ味のある主張。感情より洞察で読者を唸らせます。";
+    } else if (density >= 65) {
+      voiceType = "📚 言葉を彫る人";
+      voiceDesc = "ひとつひとつの言葉に重さを持たせる書き手。余白と密度の使い方が鍵です。";
+    } else if (t4 >= 60) {
+      voiceType = "😄 笑いのある賢者";
+      voiceDesc = "ユーモアを通して深さを届ける。笑いは距離を縮め、本音を届けるトンネルです。";
+    } else {
+      voiceType = "🔭 静かな観察者";
+      voiceDesc = "俯瞰した目で世界を描く。中立的な視点の中に、あなたの哲学が滲み出ます。";
+    }
+
+    document.getElementById('voiceTypeName').textContent = voiceType;
+    document.getElementById('voiceTypeDesc').textContent = voiceDesc;
+
+    // Trait bars
+    const traits = [
+      { name: '文体の密度', val: t1 },
+      { name: '感情の温度', val: t2 },
+      { name: '主張の強さ', val: t3 },
+      { name: 'ユーモア', val: t4 },
+      { name: '社会的視点', val: t5 },
+    ];
+
+    let barsHTML = '';
+    traits.forEach(tr => {
+      barsHTML += `
+        <div class="voice-trait-bar">
+          <div class="label-row">
+            <span>${tr.name}</span>
+            <span>${tr.val}%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:0%" data-target="${tr.val}%"></div>
+          </div>
+        </div>`;
+    });
+    document.getElementById('traitBars').innerHTML = barsHTML;
+
+    // Animate bars
+    setTimeout(() => {
+      document.querySelectorAll('.bar-fill').forEach(el => {
+        el.style.width = el.dataset.target;
+      });
+    }, 100);
+
+    // Tips based on checked obstacles
+    const checkedItems = document.querySelectorAll('.check-item.checked');
+    const checks = Array.from(checkedItems).map(el => el.querySelector('strong').textContent);
+
+    let tips = [];
+    if (checks.some(c => c.includes('読まれるか'))) {
+      tips.push({ num: '01', text: '「今日は自分だけが読む文章」を書いてみる。公開しなくていい下書きを毎日100文字。数週間後に読み返すと、自分らしいパターンが見えてきます。' });
+    }
+    if (checks.some(c => c.includes('まね'))) {
+      tips.push({ num: '02', text: '好きな書き手の「何が好きか」を言語化する。「文体」ではなく「姿勢」や「世界観」を学ぶと、自分の声と混ざらずに吸収できます。' });
+    }
+    if (checks.some(c => c.includes('ちゃんと'))) {
+      tips.push({ num: '03', text: '「断言語」を意識的に入れてみる。「〜と思う」を「〜だ」に変えるだけで、文章に体温と個性が生まれます。怖いくらいで丁度いい。' });
+    }
+    if (checks.some(c => c.includes('テーマ'))) {
+      tips.push({ num: '04', text: '「自分が何度でも書きたいテーマ」を3つに絞る。反復されるテーマこそが、あなたの声の核心です。' });
+    }
+    if (checks.some(c => c.includes('読者像'))) {
+      tips.push({ num: '05', text: '「過去の自分に宛てた手紙」として書いてみる。あの頃の自分が知りたかったことを届けるイメージで書くと、声のトーンが自然に定まります。' });
+    }
+    if (checks.some(c => c.includes('疲れ'))) {
+      tips.push({ num: '06', text: '投稿頻度を半分に下げて、一本の密度を上げる。「たくさん出す」より「一本に魂を込める」ほうが、声は磨かれます。' });
+    }
+
+    if (tips.length === 0) {
+      tips = [
+        { num: '01', text: '毎日「一文だけ本音の日記」を書く練習から始めてみましょう。飾らない言葉がたまると、自分の声のパターンが見えてきます。' },
+        { num: '02', text: '書いた文章を音読してみる。口に出して自然でない部分は、まだ「借り物の言葉」かもしれません。' },
+      ];
+    }
+
+    let tipsHTML = '';
+    tips.slice(0, 4).forEach(t => {
+      tipsHTML += `<div class="tip-item"><span class="tip-num">${t.num}</span><span>${t.text}</span></div>`;
+    });
+    document.getElementById('tipsList').innerHTML = tipsHTML;
+
+    // Daily habits
+    const habits = [
+      { title: '🌅 毎日5分の素書き', desc: 'テーマなし、読者なし。その日感じたことを5分だけ書く。' },
+      { title: '📖 月3冊の精読', desc: '好きな書き手を一冊丸ごと読む。量より質で声を吸収。' },
+      { title: '🔄 3ヶ月後に読み返す', desc: '過去の記事を読み返す。自分の声のクセが見えてくる。' },
+      { title: '✂️ 一文削る練習', desc: '書いた後、最初の一文を消してみる。本当の書き出しはどこか？' },
+    ];
+
+    let habitsHTML = '';
+    habits.forEach(h => {
+      habitsHTML += `<div class="habit-card"><div class="habit-title">${h.title}</div><div class="habit-desc">${h.desc}</div></div>`;
+    });
+    document.getElementById('habitsGrid').innerHTML = habitsHTML;
+
+    goStep(5);
+  }
+</script>
+</body>
+</html>
