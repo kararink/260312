@@ -2,26 +2,39 @@ import urllib.request
 import datetime
 import re
 import sys
+import os
+from pathlib import Path
 
 # ==========================================
 # CONFIGURATION
 # ==========================================
-# Google Calendarの「iCal形式の非公開URL」を以下に設定してください。
-# Settings -> Integrate calendar -> Secret address in iCal format
+# Google Calendarの「iCal形式の非公開URL」を環境変数から取得します。
+# ルートの .env に GOOGLE_CALENDAR_ICAL_URL=<URL> を設定してください。
 
-ICAL_URL = "https://calendar.google.com/calendar/ical/m090106%40gmail.com/private-c765a469fb19a17708ffabbcb3737bfc/basic.ics"
+def _load_ical_url() -> str:
+    """環境変数またはルート .env から GOOGLE_CALENDAR_ICAL_URL を取得する"""
+    url = os.environ.get("GOOGLE_CALENDAR_ICAL_URL")
+    if not url:
+        env_path = Path(__file__).resolve().parents[2] / ".env"
+        if env_path.exists():
+            with open(env_path, encoding="utf-8") as f:
+                for line in f:
+                    if line.startswith("GOOGLE_CALENDAR_ICAL_URL="):
+                        url = line.strip().split("=", 1)[1]
+                        break
+    return url or ""
+
+ICAL_URL = _load_ical_url()
 # ==========================================
 
 def get_today_events():
     """
     指定されたICS URLから今日の予定を取得し、整形して出力する
     """
-    # The check for "YOUR_SECRET_ical_URL_HERE" is removed as ICAL_URL is now explicitly set.
-    # If you want to keep a check for an empty or placeholder URL, you can add it here.
-    # Example:
-    # if not ICAL_URL or "YOUR_SECRET_ical_URL_HERE" in ICAL_URL:
-    #     print("Error: ICAL_URL is not configured. Please set your Google Calendar Secret iCal URL in the script.")
-    #     return
+    if not ICAL_URL:
+        print("Error: GOOGLE_CALENDAR_ICAL_URL が設定されていません。")
+        print("ルートの .env に GOOGLE_CALENDAR_ICAL_URL=<URL> を追記してください。")
+        return
 
     try:
         # ICSデータを取得

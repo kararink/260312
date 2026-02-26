@@ -13,9 +13,11 @@ Discord Webhook を使ったプッシュ通知スクリプト
 """
 
 import sys
+import os
 import json
 import requests
 import io
+from pathlib import Path
 
 # Windows コンソール（cp932）で日本語出力が崩れないようにする
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -25,9 +27,26 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 # ==========================================
-# 💎 Webhook URL
+# 💎 Webhook URL（環境変数から取得）
 # ==========================================
-WEBHOOK_URL = "https://discordapp.com/api/webhooks/1473201230619607155/Q51lJ4HaB8scptE-Wi8GG5aVokLNDVsg_ZgQr3lOlGRJQpG5OWfEjM05LYY-DQI30EdO"
+def _load_webhook_url() -> str:
+    """環境変数またはルート .env から DISCORD_WEBHOOK_URL を取得する"""
+    url = os.environ.get("DISCORD_WEBHOOK_URL")
+    if not url:
+        # ルートの .env を探す
+        env_path = Path(__file__).resolve().parents[2] / ".env"
+        if env_path.exists():
+            with open(env_path, encoding="utf-8") as f:
+                for line in f:
+                    if line.startswith("DISCORD_WEBHOOK_URL="):
+                        url = line.strip().split("=", 1)[1]
+                        break
+    if not url:
+        print("[ERROR] DISCORD_WEBHOOK_URL が設定されていません。")
+        print("ルートの .env に DISCORD_WEBHOOK_URL=<URL> を追記してください。")
+    return url or ""
+
+WEBHOOK_URL = _load_webhook_url()
 
 def send_discord_message(message: str, username="Antigravity Agent") -> bool:
     """

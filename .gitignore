@@ -8,6 +8,7 @@ $RECYCLE.BIN/
 # Editor / IDE
 .vscode/
 .idea/
+.windsurf/
 *.swp
 *.swo
 *.bak
@@ -20,17 +21,23 @@ __pycache__/
 *.pyd
 .Python
 env/
-venv/
+**/venv/
 .venv/
 pip-log.txt
 pip-delete-this-directory.txt
-.env
 .pytest_cache/
+
+# Environment files (all directories)
+.env
+**/.env
+!.env.example
+!**/.env.example
 
 # Node / JS
 node_modules/
 npm-debug.log
 yarn-error.log
+package-lock.json
 
 # Obsidian
 # Ignore workspace state, but keep config (appearance, hotkeys)
@@ -38,7 +45,10 @@ yarn-error.log
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .obsidian/cache
+.obsidian/plugins/
 .trash/
+*.canvas
+*.base
 
 # Media / Big Files
 *.mp3
@@ -50,8 +60,29 @@ yarn-error.log
 *.avi
 *.mkv
 
+# Images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.ico
+*.bmp
+*.svg
+
+# Documents
+*.pdf
+*.xml
+
+# Windows Shortcuts
+*.lnk
+
 # Logs
 *.log
+
+# Build Output
+**/out/
+**/dist/
 
 # Project Specific
 # Agent internals
