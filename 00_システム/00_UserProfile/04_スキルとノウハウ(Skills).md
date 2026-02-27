@@ -14,6 +14,10 @@
     *   Antigravity環境において、エージェントに新しい能力を付与する「スキル」の設計・作成方法を習得（Transcriber等を自作）。
 *   **Discord Integration** (2026-02追加):
     *   Webhookを活用したDiscord連携通知システムの構築。LINE代替として実装。
+*   **Security & API Management** (2026-02追加):
+    *   システムの脆弱性特定、APIキーのローテーション、環境変数管理によるセキュリティ強化の実践。
+*   **Token Launch Strategy** (2026-02追加):
+    *   暗号資産/トークンのローンチ直後（10〜30分）の市場動向把握と参入タイミングの最適化に関する知見。
 *   **Health & Productivity**: Fujin式Opal運用, 呼吸瞑想 (Dラボ), 侵襲アクセプタンス。
 
 ## 2. 独自のノウハウ (Unique Know-how)
