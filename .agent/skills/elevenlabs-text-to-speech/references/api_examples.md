@@ -1,0 +1,160 @@
+# ElevenLabs Text-to-Speech API Examples
+
+## Quick Start (SDK & cURL)
+
+### Python
+
+```python
+from elevenlabs.client import ElevenLabs
+
+client = ElevenLabs()
+
+audio = client.text_to_speech.convert(
+    text="Hello, welcome to ElevenLabs!",
+    voice_id="JBFqnCBsd6RMkjVDRZzb",  # George
+    model_id="eleven_multilingual_v2"
+)
+
+with open("output.mp3", "wb") as f:
+    for chunk in audio:
+        f.write(chunk)
+```
+
+### JavaScript
+
+```javascript
+import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
+import { createWriteStream } from "fs";
+
+const client = new ElevenLabsClient();
+const audio = await client.textToSpeech.convert("JBFqnCBsd6RMkjVDRZzb", {
+  text: "Hello, welcome to ElevenLabs!",
+  modelId: "eleven_multilingual_v2",
+});
+audio.pipe(createWriteStream("output.mp3"));
+```
+
+### cURL
+
+```bash
+curl -X POST "https://api.elevenlabs.io/v1/text-to-speech/JBFqnCBsd6RMkjVDRZzb" \
+  -H "xi-api-key: $ELEVENLABS_API_KEY" -H "Content-Type: application/json" \
+  -d '{"text": "Hello!", "model_id": "eleven_multilingual_v2"}' --output output.mp3
+```
+
+## Voice Settings Integration
+
+Fine-tune how the voice sounds:
+
+- **Stability**: How consistent the voice stays.
+- **Similarity boost**: How closely to match the original voice sample.
+- **Style**: Exaggerates the voice's unique style characteristics.
+- **Speaker boost**: Enhances clarity and voice similarity.
+
+```python
+from elevenlabs import VoiceSettings
+
+audio = client.text_to_speech.convert(
+    text="Customize my voice settings.",
+    voice_id="JBFqnCBsd6RMkjVDRZzb",
+    voice_settings=VoiceSettings(
+        stability=0.5,
+        similarity_boost=0.75,
+        style=0.5,
+        use_speaker_boost=True
+    )
+)
+```
+
+## Language Enforcement
+
+Force specific language for pronunciation:
+
+```python
+audio = client.text_to_speech.convert(
+    text="Bonjour, comment allez-vous?",
+    voice_id="JBFqnCBsd6RMkjVDRZzb",
+    model_id="eleven_multilingual_v2",
+    language_code="fr"  # ISO 639-1 code
+)
+```
+
+## Text Normalization
+
+Controls how numbers, dates, and abbreviations are converted to spoken words. 
+
+- `"auto"` (default): Model decides based on context
+- `"on"`: Always normalize
+- `"off"`: Speak literally
+
+```python
+audio = client.text_to_speech.convert(
+    text="Call 1-800-555-0123 on 01/15/2026",
+    voice_id="JBFqnCBsd6RMkjVDRZzb",
+    apply_text_normalization="on"
+)
+```
+
+## Request Stitching
+
+Request stitching connects multiple requests seamlessly without audio pops:
+
+```python
+# First request
+audio1 = client.text_to_speech.convert(
+    text="This is the first part.",
+    voice_id="JBFqnCBsd6RMkjVDRZzb",
+    next_text="And this continues the story."
+)
+
+# Second request using previous context
+audio2 = client.text_to_speech.convert(
+    text="And this continues the story.",
+    voice_id="JBFqnCBsd6RMkjVDRZzb",
+    previous_text="This is the first part."
+)
+```
+
+## Streaming
+
+For real-time applications:
+
+```python
+audio_stream = client.text_to_speech.convert(
+    text="This text will be streamed as audio.",
+    voice_id="JBFqnCBsd6RMkjVDRZzb",
+    model_id="eleven_flash_v2_5"  # Ultra-low latency
+)
+
+for chunk in audio_stream:
+    play_audio(chunk)
+```
+
+## Tracking Costs
+
+Monitor character usage via response headers (`x-character-count`, `request-id`):
+
+```python
+response = client.text_to_speech.convert.with_raw_response(
+    text="Hello!", voice_id="JBFqnCBsd6RMkjVDRZzb", model_id="eleven_multilingual_v2"
+)
+audio = response.parse()
+print(f"Characters used: {response.headers.get('x-character-count')}")
+```
+
+## Error Handling
+
+```python
+try:
+    audio = client.text_to_speech.convert(
+        text="Generate speech",
+        voice_id="invalid-voice-id"
+    )
+except Exception as e:
+    print(f"API error: {e}")
+```
+
+Common errors:
+- **401**: Invalid API key
+- **422**: Invalid parameters (check voice_id, model_id)
+- **429**: Rate limit exceeded
