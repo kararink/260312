@@ -2,7 +2,7 @@ import os
 import sys
 import random
 import argparse
-from PIL import Image
+from PIL import Image, ImageFilter
 
 def get_random_stamp(stamps_dir):
     """Get a random stamp image from the stamps directory."""
@@ -29,8 +29,26 @@ def add_watermark(base_image_path, stamp_image_path, output_path, scale_factor=0
         base_img = Image.open(base_image_path).convert("RGBA")
         stamp_img = Image.open(stamp_image_path).convert("RGBA")
         
-        # Calculate new size for the stamp
+        # Crop base image to 16:9 aspect ratio
+        target_ratio = 16.0 / 9.0
         base_width, base_height = base_img.size
+        current_ratio = base_width / base_height
+
+        if current_ratio > target_ratio:
+            # Too wide, crop width
+            new_width = int(base_height * target_ratio)
+            left = (base_width - new_width) // 2
+            base_img = base_img.crop((left, 0, left + new_width, base_height))
+        elif current_ratio < target_ratio:
+            # Too tall, crop height
+            new_height = int(base_width / target_ratio)
+            top = (base_height - new_height) // 2
+            base_img = base_img.crop((0, top, base_width, top + new_height))
+
+        # Re-calculate size after crop
+        base_width, base_height = base_img.size
+        
+        # Calculate new size for the stamp
         # Scale based on the smaller dimension of the base image
         target_dim = int(min(base_width, base_height) * scale_factor)
         
@@ -47,9 +65,9 @@ def add_watermark(base_image_path, stamp_image_path, output_path, scale_factor=0
             
         stamp_img = stamp_img.resize((new_width, new_height), Image.Resampling.LANCZOS)
         
-        # Determine a random corner (0: top-left, 1: top-right, 2: bottom-left, 3: bottom-right)
+        # Determine corner: user asked for top-left specifically
         margin = int(min(base_width, base_height) * 0.05) # 5% margin
-        corner = random.randint(0, 3)
+        corner = 0 # Fix to top-left
         
         if corner == 0:
             pos = (margin, margin)
@@ -63,6 +81,16 @@ def add_watermark(base_image_path, stamp_image_path, output_path, scale_factor=0
         # Create a new transparent image the size of the base image
         composite = Image.new("RGBA", base_img.size, (0, 0, 0, 0))
         composite.paste(base_img, (0, 0))
+
+        # Create a white glow/border to blend the stamp better
+        glow = Image.new("RGBA", stamp_img.size, (255, 255, 255, 255))
+        glow.putalpha(stamp_img.split()[-1])
+        glow = glow.filter(ImageFilter.GaussianBlur(radius=4))
+        
+        # Paste the glow slightly offset and multiple times to make it visible
+        composite.paste(glow, pos, mask=glow)
+        composite.paste(glow, pos, mask=glow)
+        
         # Use the stamp image as its own mask for transparency
         composite.paste(stamp_img, pos, mask=stamp_img)
         

@@ -1,6 +1,6 @@
 # NoteDiffusion Final (2026-03-02)
 
-![見出し画像](./NoteDiffusion_StampedImage.png)
+![見出し画像](../04_Note画像/NoteDiffusion_StampedImage.png)
 
 ---
 
@@ -127,8 +127,7 @@ Silent Architect
 この逆説──「信頼」は最も合理的な戦略である。
 
 ▼続きはこちら
-[URL]
-
+https://note.com/jf3esp/n/n29f1dab7c392?sub_rt=share_pb
 # Anthropic #AI戦略
 
 ---
@@ -148,7 +147,7 @@ Silent Architect
 AIを「便利なツール」として使う時代から、「自分の知性を預けるパートナー」として選ぶ時代へ。その転換点に、私たちは立っている。
 
 ▼詳細な考察はこちらのNoteにまとめました
-[URL]
+https://note.com/jf3esp/n/n29f1dab7c392?sub_rt=share_pb
 
 ---
 
@@ -189,7 +188,7 @@ AIを「便利なツール」として使う時代から、「自分の知性を
 Anthropicの最新機能「Claude Code Security」と、Google × Anthropicの「ハイブリッド運用」が描くAIの未来について、Noteにまとめた。
 
 ▼プロフィールのリンク（またはストーリーズ）からNoteの記事をチェック！
-[URL]
+https://note.com/jf3esp/n/n29f1dab7c392?sub_rt=share_pb
 
 ### ハッシュタグ
 
