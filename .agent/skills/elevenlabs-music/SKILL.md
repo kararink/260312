@@ -14,18 +14,10 @@ Generate music from text prompts - supports instrumental tracks, songs with lyri
 
 Create original music using prompt-based generation. Whether you need an instrumental background score, a catchy jingle, or a full song with lyrics, the Music API provides various modes of composition—from one-shot generation to detailed multi-step composition plans for granular control over styles, sections, and mood.
 
-## Composition Plans
+## Features
 
-For granular control, you can generate a composition plan first before committing to audio synthesis. A composition plan allows you to:
-- Inspect global styles assigned by the model
-- Modify parameters like positive and negative global styles
-- Verify the intended length before spending credits
-
-## Content Restrictions
-
-- Cannot reference specific artists, bands, or copyrighted lyrics
-- `bad_prompt` errors include a `prompt_suggestion` with alternative phrasing
-- `bad_composition_plan` errors include a `composition_plan_suggestion`
+- **Composition Plans**: For granular control, generate a plan before committing to audio synthesis to inspect and modify styles.
+- **Content Limitations**: Cannot reference specific artists, bands, or copyrighted lyrics. See references for handling generation errors.
 
 ## References
 

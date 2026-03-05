@@ -1,5 +1,18 @@
 # ElevenLabs Sound Effects API Examples
 
+## Capabilities
+
+- **Sound Generation:** Create almost any sound effect strictly from a text prompt.
+- **Custom Durations:** Request exactly the length of audio you need (0.5 up to 30 seconds).
+- **Prompt Adherence:** Tweak how strongly the engine should try to match your prompt compared to audio diversity.
+- **Looping:** Specifying "loop=true" generates sound effects explicitly intended to be tiled/looped seamlessly forever.
+
+## Prompt Tips Example
+
+You can achieve better sounds by describing the exact texture, action, background, or mood:
+- *Atmosphere:* "Eerie wind howling through an abandoned building"
+- *Action:* "Layered heavy armor footsteps walking carefully through gravel"
+- *Impact:* "Cinematic braam impact with metallic screech"
 ## Quick Start (SDK & cURL)
 
 ### Python

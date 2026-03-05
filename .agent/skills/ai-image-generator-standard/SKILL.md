@@ -31,16 +31,12 @@ Google AI の画像生成モデル **Nano Banana Pro** を使って、
   ```
 
 ### 2. モード判定
-ユーザーの発言から以下の4モードを判定する:
+ユーザーの発言から以下の4モードを判定し、`resources/workflow_details.md` の該当 Step を参照して実行する:
 
-| モード | 判定キーワード | 実行内容 |
-|:---|:---|:---|
-| 💰 料金確認 | 料金, いくら, コスト, 値段, 費用 | → `resources/workflow_details.md` の **Step 3a** 参照 |
-| 🚀 セットアップ | セットアップ, 設定, APIキー, 初期設定 | → `resources/workflow_details.md` の **Step 3b** 参照 |
-| 🎨 画像生成 | 画像, サムネ, バナー, イラスト, 生成 | → `resources/workflow_details.md` の **Step 3c** 参照 |
-| 📖 プロンプト相談 | プロンプト, コツ, どう書く, テンプレ | → `resources/workflow_details.md` の **Step 3d** 参照 |
-
-> **Action**: 判定したモードの詳細な実行ステップやパラメータについては、必ず `resources/workflow_details.md` を読み込んでから処理を進めてください。
+- 💰 **料金確認** (料金, いくら, コスト) → Step 3a
+- 🚀 **セットアップ** (セットアップ, 設定, APIキー) → Step 3b
+- 🎨 **画像生成** (画像, サムネ, バナー, 生成) → Step 3c
+- 📖 **プロンプト相談** (プロンプト, コツ, テンプレ) → Step 3d
 
 ## Tips
 - **コスト**: NB Pro 2K = 約¥20/枚。月10枚で約¥200。月50枚で約¥1,000

@@ -32,9 +32,25 @@ elevenlabs agents init
 
 # Create an agent from template
 elevenlabs agents add "My Assistant" --template default
+# Available templates: default, minimal, voice-only, text-only, customer-service, assistant
 
 # Push to ElevenLabs platform
 elevenlabs agents push
+
+# List agents and check status
+elevenlabs agents list
+elevenlabs agents status
+
+# Import agents from platform to local config
+elevenlabs agents pull                      # Import all agents
+elevenlabs agents pull --agent <agent-id>   # Import specific agent
+
+# Push local changes to platform
+elevenlabs agents push              # Upload configurations
+elevenlabs agents push --dry-run    # Preview changes first
+
+# Add tools to agents
+elevenlabs agents tools add "Weather API" --type webhook --config-path ./weather.json
 ```
 
 ## JavaScript / TypeScript SDK

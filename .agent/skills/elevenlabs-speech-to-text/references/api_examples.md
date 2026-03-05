@@ -1,5 +1,26 @@
 # ElevenLabs Speech-to-Text API Examples
 
+## Models
+
+| Model ID | Description | Best For |
+|----------|-------------|----------|
+| `scribe_v2` | State-of-the-art accuracy, 90+ languages | Batch transcription, subtitles, long-form audio |
+| `scribe_v2_realtime` | Low latency (~150ms) | Live transcription, voice agents |
+
+## Supported Formats
+
+**Audio:** MP3, WAV, M4A, FLAC, OGG, WebM, AAC, AIFF, Opus
+**Video:** MP4, AVI, MKV, MOV, WMV, FLV, WebM, MPEG, 3GPP
+
+**Limits:** Up to 3GB file size, 10 hours duration
+
+## Features Available
+
+- **Transcription with Timestamps:** Get precise start and end times for every word.
+- **Speaker Diarization:** Identify which speaker is talking for each word.
+- **Keyterm Prompting:** Provide specific words or jargon to improve recognition.
+- **Language Detection:** Automatically detect the spoken language.
+- **Real-Time Streaming:** Transcribe live audio with ultra-low latency.
 ## Quick Start (SDK & cURL)
 
 ### Python
