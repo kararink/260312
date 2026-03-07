@@ -1,0 +1,193 @@
+{
+  "main": {
+    "id": "134174aac2452ef7",
+    "type": "split",
+    "children": [
+      {
+        "id": "1ac9868fb8683bac",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c907b85dc9bfa1a7",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新規タブ"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fe4022186543bbf8",
+    "type": "split",
+    "children": [
+      {
+        "id": "65ccfdf78077208a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6701011ac643f0ad",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "ファイルエクスプローラ"
+            }
+          },
+          {
+            "id": "a8e022e63cb86786",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "検索"
+            }
+          },
+          {
+            "id": "88eacae20a384a12",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "ブックマーク"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "434397ef017dd946",
+    "type": "split",
+    "children": [
+      {
+        "id": "7ca561fc5e261a97",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0bd0849668fa1d22",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "バックリンク"
+            }
+          },
+          {
+            "id": "52eb28d814f8202e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "アウトゴーイングリンク"
+            }
+          },
+          {
+            "id": "769e46d4c940e5b6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "タグ"
+            }
+          },
+          {
+            "id": "60109fd684d519a5",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "すべてのプロパティ"
+            }
+          },
+          {
+            "id": "f83191831463770a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "アウトライン"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:クイックスイッチャーを開く": false,
+      "graph:グラフビューを開く": false,
+      "canvas:新規キャンバスを作成": false,
+      "daily-notes:今日のデイリーノートを開く": false,
+      "templates:テンプレートを挿入": false,
+      "command-palette:コマンドパレットを開く": false,
+      "bases:新規ベースを作成": false
+    }
+  },
+  "active": "c907b85dc9bfa1a7",
+  "lastOpenFiles": [
+    "251225-03_【資料2】内部公益通報制度実施要綱（R8.1施行）.pdf",
+    "251225-02_【資料1】兵庫県公益通報者保護制度（概要）.pdf",
+    "251225-01_【通知文】公益通報者保護制度に係る実施要綱の改正及び周知について.pdf",
+    "251225-00_メール 公益通報者保護制度に係る要綱の改正.pdf",
+    "260306_決裁（報告）：匿名通報（(株)誠工業 営業所技術者の常勤性に疑義）.pdf",
+    "250711-02_（新）建設業法違反行為事務処理要綱（R7.2.1）doc.pdf",
+    "250711-01_建設業法等違反処理事務処理要綱の一部修正（契約管理課長通知）.pdf",
+    "Gmail/260306_決裁（報告）：匿名通報（(株)誠工業 営業所技術者の常勤性に疑義）.pdf",
+    "Gmail/250711-01_建設業法等違反処理事務処理要綱の一部修正（契約管理課長通知）.pdf",
+    "Gmail/250711-02_（新）建設業法違反行為事務処理要綱（R7.2.1）doc.pdf",
+    "Gmail"
+  ]
+}
