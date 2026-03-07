@@ -1,0 +1,78 @@
+戦略助言：(株)誠工業 営業所技術者の常勤性疑義に係る匿名通報への対応
+　令和8年3月4日に収受した匿名通報（対象：船引秀一氏の常勤性疑義）に関する、法的要請を踏まえた行政側の対応戦略である。
+ 
+　感情論を排し、公益通報者保護法および建設業法の「事実（What）」に基づく防衛と攻勢の二段構えで構築する。
+1. 現状認識と防衛線（公益通報制度上のリスク管理）
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">事案の性質
+：匿名かつ差出人不明の通報である。しかし、「雇用時から一度も会社にいない」という具体的な違法行為の指摘を含むため、兵庫県内部公益通報制度実施要綱（第19条第3項の除外事由に該当せず）に基づき、調査の端緒として受理すべき「公益通報」と判断される。
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">通報者探索の禁止（要綱第12条）
+：差出人を特定しようとする一切のアクションを禁ずる。「誰が置いたのか」の詮索は組織的リスク（通報者保護法違反のリスク）を伴う。
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">範囲外共有の防止と秘密保持（要綱第13・14条）
+：宅建システム机上で発見されたという経緯から、既に不特定多数の目に触れた可能性がある。直ちに関係職員（課内等）に対し、本件の口外禁止と文書の厳重な保管を徹底する。
+2. 調査アプローチ（建設業法に基づく「常勤性・専属性」の事実確認）
+公益通報の保秘を維持しつつ、建設業法第31条（報告徴収・立入検査）に基づく事実確認へと移行する。通報を契機とした「不意打ちの調査」ではなく、「定期的な確認」または「更新や他社事例を踏まえた無作為抽出調査」という客観的な名目を装うのが定石である。
+(1) 机上での仮説構築（一次データ分析）
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">保有書類の矛盾点洗い出し
+:
+○
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">23年8月時点で提出された健康保険被保険者証等の有効性確認。現在も社会保険等に加入し続けているか（標準報酬月額が常勤の役付・有資格者に相応しいか）。
+○
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">船引氏は昭和32年(1957年)生まれであり、現在66〜67歳。老齢年金受給のために意図的に給与を抑えている、あるいは実体として勤務していない「名義貸し」の疑いが自然な仮説として浮上する。
+(2) 実地・聴取による検証（Whatの確認）
+以下の物的証拠（Fact）に基づき、常勤性を淡々と詰める。
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">出勤記録と賃金台帳
+：タイムカード、出勤簿、賃金関係書類。通勤手当の支給実態（定期券の写し等）。
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">業務実績の痕跡
+：船引氏の専用デスクの有無。書類の決裁印、業務メールの送受信履歴、PCのログイン記録など、日常的に「専らその職務に従事」している痕跡。
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">直接聴取
+：代表の柿元氏、および船引氏本人へのヒアリング。担当案件の具体的内容や日々の業務ルーティンを問うことで、実態との乖離を浮き彫りにする。
+3. 行政処分を見据えたシナリオ（事務処理のロードマップ）
+事実確認の結果に応じた、冷徹な事務処理の分岐である。
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">シナリオA：常勤性が認められる場合
+○
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">通報事実なしとして内観処理。以後の措置は不要。
+●
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">シナリオB：「名義貸し」等により常勤性が否定された場合
+○
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">許可基準（建設業法第15条第2号）の欠如
+となる。
+○
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">虚偽申請への発展
+：もし、23年8月〜9月の特定許可等（あるいは24年11月の一般許可）の申請時点からすでに勤務実態がなかった場合、法第29条第1項第7号の「不正の手段により許可を受けた」に該当する。この場合、「許可の取消し」および「5年間の営業禁止処分」という最も重い行政処分（建設業法違反行為事務処理要綱 第11条）への発展が視野に入る。
+○
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">事後的な欠如
+：申請時は常勤であったがその後に欠如した場合、法第28条第3項等による「営業停止処分」と指示処分の対象となる。
+○
+  
+</w:r><w:r w:rsidDel="00000000" w:rsidR="00000000" w:rsidRPr="00000000"><w:rPr><w:rFonts w:ascii="Arial Unicode MS" w:cs="Arial Unicode MS" w:eastAsia="Arial Unicode MS" w:hAnsi="Arial Unicode MS"/><w:b w:val="1"/><w:bCs w:val="1"/><w:rtl w:val="0"/></w:rPr><w:t xml:space="preserve">次の一手
+：いずれにせよ、監督処分基準に該当する可能性が高まった時点で、直ちに契約管理課と協議を開始する（要綱第6条）。
+結論：今後のアクションプラン
+即時
+：所内での情報統制（公益通報としての保秘徹底と通報者探索の禁止）を行う。
+直近
+：「名義貸し（高齢による年金受給との兼ね合い）」の仮説を念頭に置き、業者に対して建設業法に基づく直近の「出勤簿・賃金台帳・社会保険料納付記録等」の提出を求める（報告徴収）。
+次段階
+：提出書類に疑義があれば、立入検査および関係者聴取を実施し、証拠（Fact）を積み上げる。処分への発展を見据え、初期段階から契約管理課を巻き込む準備をしておく。
