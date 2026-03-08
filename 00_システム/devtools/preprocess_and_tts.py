@@ -21,8 +21,8 @@ if not API_KEY:
     except:
         pass
 
-SOURCE_FILE = r"c:\Users\杢之助\2nd-Brain\Clippings\260216_パレオなチャンネル_「重金属が入ってそうな食品とサプリ」パーフェクトガイド.md"
-OUTPUT_FILE = r"c:\Users\杢之助\2nd-Brain\test_tts_heavy_metal.mp3"
+SOURCE_FILE = r"c:\Users\杢之助\2nd-Brain\03_知識ベース\Clippings\260216_パレオなチャンネル_「重金属が入ってそうな食品とサプリ」パーフェクトガイド.md"
+OUTPUT_FILE = r"c:\Users\杢之助\2nd-Brain\02_音声\processed\test_tts_heavy_metal.mp3"
 
 def clean_text(text):
     # Remove YAML frontmatter
