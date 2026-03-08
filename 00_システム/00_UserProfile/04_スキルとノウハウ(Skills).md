@@ -20,7 +20,11 @@
     *   暗号資産/トークンのローンチ直後（10〜30分）の市場動向把握と参入タイミングの最適化に関する知見。
 *   **FACT Structure (実務調査構造化)** (2026-03追加):
     *   実務調査において、藻谷氏流の「WHAT」に基づき事実を炙り出すための攻めの質問・チェックリスト構造化技術。
-*   **Health & Productivity**: Fujin式Opal運用, 呼吸瞑想 (Dラボ), 侵襲アクセプタンス。
+*   **Workflow Automation (NoteDiffusion)** (2026-03追加):
+    *   PDF等の元ソースから、Note記事、Xポスト、SNS用画像生成プロンプトまでを一気通貫で自動生成する高度なプロンプトチェーン（NoteDiffusionワークフロー）の構築・実運用スキル。
+*   **System Refactoring (Token Efficiency)** (2026-03追加):
+    *   環境内の不要なスキルファイル群を整理・分割し、AIエージェントのトークン効率と実行速度を最大化するアーキテクチャ最適化スキル。
+*   **Health & Productivity**: Fujin式Opal運用, 呼吸瞑想 (Dラボ), 侵襲アクセプタンス, Sensory Groundingの実践。
 
 ## 2. 独自のノウハウ (Unique Know-how)
 *   **Process Economy**: 試行錯誤の過程をコンテンツ化する手法。
