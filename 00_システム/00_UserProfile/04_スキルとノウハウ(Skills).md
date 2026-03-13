@@ -30,3 +30,7 @@
 *   **Process Economy**: 試行錯誤の過程をコンテンツ化する手法。
 *   **Digital Twin Construction**: 自分自身の思考モデルを言語化し、AIに実装するメソッド。
 *   **Token Efficiency Optimization**: 大規模Agentシステムにおけるスキルファイルの分割・リファクタリングによる、推論精度とコストの最適化ノウハウ。
+*   **Sensory Grounding Integration** (2026-03追加):
+    *   独自の美学（例: ヒグラシコーヒー等）と身体感覚を満たす環境づくりを意図的に組み合わせることで、知的生産の質と精神的レジリエンスを最大化する暗黙知。
+*   **Strict Fact & Compliance Application** (2026-03追加):
+    *   立入調査等において、一次データ（WHAT）と法規（インボイス制度等）の整合性を厳格に照合し、迅速な是正プロセスを構築する実務遂行ノウハウ。
