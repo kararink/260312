@@ -151,7 +151,7 @@ A conceptual editorial illustration depicting the idea of breaking through an in
 4月から、130万円の壁の計算に残業代が含まれなくなる。約640万人に影響する変更の本質を解説した。
 
 ▼続きはこちら
-[URL]
+https://note.com/jf3esp/n/n80238ab427ba?sub_rt=share_pb
 
 #年収130万円の壁 #社会保険
 
@@ -171,7 +171,7 @@ A conceptual editorial illustration depicting the idea of breaking through an in
 制度を知り、使いこなす。その視点で詳しく書いた。
 
 ▼詳細な考察はこちらのNoteにまとめました
-[URL]
+https://note.com/jf3esp/n/n80238ab427ba?sub_rt=share_pb
 
 ---
 ### 【5】Instagram用の画像指示書とキャプション（拡散用）
@@ -194,6 +194,7 @@ A conceptual editorial illustration depicting the idea of breaking through an in
 下部に小さく「2026年4月〜施行」。
 
 **3枚目（まとめ・CTA）**:
+![3枚目](../05_Instagram/NoteDiffusion_20260314_IG_03.png)
 背景色: ダークネイビー（#1A1A2E）。
 中央テキスト: 「制度を知って、使いこなす。」（ゴールド文字、大きめ）
 下部: 「▶ 詳しくはNoteで解説中（プロフィールのリンクから）」（白文字、小さめ）
@@ -216,6 +217,6 @@ A conceptual editorial illustration depicting the idea of breaking through an in
 その分岐点にいる。
 
 ▼プロフィールのリンク（またはストーリーズ）からNoteの記事をチェック！
-[URL]
+https://note.com/jf3esp/n/n80238ab427ba?sub_rt=share_pb
 
 #年収130万円の壁 #社会保険 #パート労働 #扶養認定 #厚労省 #働き方改革 #第3号被保険者 #130万の壁 #手取り #制度改正 #社会保障 #家計管理 #知って得する #暮らしの知恵 #お金の勉強

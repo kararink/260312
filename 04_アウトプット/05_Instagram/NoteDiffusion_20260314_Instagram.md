@@ -11,5 +11,5 @@
 **再生成用プロンプト**: Instagram slide 2 of 3, clean white background. Gold header text at top "何が変わるのか". Three bullet points with green check mark icons in Japanese: "✅ 残業代を年収に含めない", "✅ 契約上の賃金で判断", "✅ 繁忙期に超えても扶養維持". Small text at bottom: "2026年4月〜施行". Square 1:1 format, modern infographic style.
 
 ### 3枚目 (まとめ・CTA)
-⚠️ 画像生成クォータ制限のため未生成。以下のプロンプトで後日生成してください。
+![3枚目](NoteDiffusion_20260314_IG_03.png)
 **再生成用プロンプト**: Instagram slide 3 of 3, dark navy background (#1A1A2E). Large centered gold text "制度を知って、使いこなす。". Below in smaller white text: "▶ 詳しくはNoteで解説中（プロフィールのリンクから）". Minimal elegant design, square 1:1 format, call-to-action social media graphic.
