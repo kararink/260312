@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Save Image as PNG",
+  "version": "1.0",
+  "description": "Adds a context menu option to save any image as a PNG file.",
+  "permissions": [
+    "contextMenus",
+    "downloads",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
