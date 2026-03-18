@@ -164,7 +164,7 @@ Ambient lo-fi acoustic pop with gentle fingerpicked guitar, soft piano pads, war
 この視点の転換が、自己成就の予言になる。
 
 ▼続きはこちら
-[URL]
+https://note.com/jf3esp/n/n685e9307dbfb
 
 #心理学 #強みを育てる
 
@@ -186,9 +186,8 @@ Ambient lo-fi acoustic pop with gentle fingerpicked guitar, soft piano pads, war
 教育だけの話ではない。マネジメント、子育て、自分自身との対話。すべてに通じる原理だと感じた。
 
 ▼詳細な考察はこちらのNoteにまとめました
-[URL]
+https://note.com/jf3esp/n/n685e9307dbfb
 
----
 ---
 
 ## 【5】Instagram用の画像指示書とキャプション（拡散用）
@@ -237,7 +236,7 @@ Ambient lo-fi acoustic pop with gentle fingerpicked guitar, soft piano pads, war
 詳しくはNote記事にまとめました👇
 
 ▼プロフィールのリンクからNoteの記事をチェック！
-[URL]
+https://note.com/jf3esp/n/n685e9307dbfb
 
 ### ハッシュタグ
 #心理学 #ソリューションフォーカス #確証バイアス #強みを育てる #SFA #教育心理学 #自己肯定感 #コーチング #マネジメント #子育て #認知バイアス #ポジティブ心理学 #読書記録 #学びの共有 #自己成長
