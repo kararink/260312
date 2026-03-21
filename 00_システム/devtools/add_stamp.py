@@ -15,15 +15,16 @@ def get_random_stamp(stamps_dir):
         return None
     return os.path.join(stamps_dir, random.choice(stamps))
 
-def add_watermark(base_image_path, stamp_image_path, output_path, scale_factor=0.2):
+def add_watermark(base_image_path, stamp_image_path, output_path, scale_factor=0.2, position="top-left"):
     """
-    Overlay the stamp image onto the base image at a random corner.
+    Overlay the stamp image onto the base image at a corner.
     
     Args:
         base_image_path: Path to the main generated image
         stamp_image_path: Path to the character stamp image
         output_path: Path to save the composite image
         scale_factor: How large the stamp should be relative to the base image (0.0 to 1.0)
+        position: Where to place the stamp ("top-left", "top-right", "bottom-left", "bottom-right")
     """
     try:
         base_img = Image.open(base_image_path).convert("RGBA")
@@ -65,10 +66,18 @@ def add_watermark(base_image_path, stamp_image_path, output_path, scale_factor=0
             
         stamp_img = stamp_img.resize((new_width, new_height), Image.Resampling.LANCZOS)
         
-        # Determine corner: user asked for top-left specifically
+        # Determine corner
         margin = int(min(base_width, base_height) * 0.05) # 5% margin
-        corner = 0 # Fix to top-left
         
+        if position == "top-left":
+            corner = 0
+        elif position == "top-right":
+            corner = 1
+        elif position == "bottom-left":
+            corner = 2
+        else: # bottom-right
+            corner = 3
+            
         if corner == 0:
             pos = (margin, margin)
         elif corner == 1:
@@ -116,6 +125,8 @@ if __name__ == "__main__":
                         help="Directory containing the character stamps")
     parser.add_argument("--scale", type=float, default=0.2, 
                         help="Scale factor for the stamp (default: 0.2)")
+    parser.add_argument("--position", choices=["top-left", "top-right", "bottom-left", "bottom-right"], default="top-left", 
+                        help="Position of the stamp (default: top-left)")
     
     args = parser.parse_args()
     
@@ -137,6 +148,6 @@ if __name__ == "__main__":
     # Ensure output directory exists
     os.makedirs(os.path.dirname(os.path.abspath(args.output_image)), exist_ok=True)
     
-    success = add_watermark(args.input_image, stamp_path, args.output_image, args.scale)
+    success = add_watermark(args.input_image, stamp_path, args.output_image, args.scale, args.position)
     if not success:
         sys.exit(1)
