@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 from PIL import Image
 import io
+import time
 
 # Setup Gemini
 env_path = Path(__file__).parent / ".env"
@@ -20,7 +21,7 @@ genai.configure(api_key=GEMINI_API_KEY)
 # We can use gemini-2.5-flash since it's fast and supports vision.
 model = genai.GenerativeModel('gemini-2.5-flash')
 
-def get_text_from_image(img_bytes):
+def get_text_from_image(img_bytes, retries=5):
     image = Image.open(io.BytesIO(img_bytes))
     prompt = (
         "提供された画像に含まれる文章を、一言一句正確に文字起こししてください。"
@@ -28,11 +29,19 @@ def get_text_from_image(img_bytes):
         "ページ番号やシステムの文字は除外して、本文のみを抽出してください。"
         "出力は抽出したテキストのみとし、説明や挨拶は絶対に含めないでください。"
     )
-    try:
-        response = model.generate_content([prompt, image])
-        return response.text.strip()
-    except Exception as e:
-        return f"[Gemini API Error] {e}"
+    for attempt in range(retries):
+        try:
+            response = model.generate_content([prompt, image])
+            time.sleep(4.5)  # Respect 15 RPM
+            return response.text.strip()
+        except Exception as e:
+            err_msg = str(e)
+            if "429" in err_msg or "quota" in err_msg.lower():
+                print(f"[Attempt {attempt+1}/{retries}] Rate limited, waiting 45 seconds... {err_msg}")
+                time.sleep(45)
+            else:
+                return f"[Gemini API Error] {e}"
+    return "[Gemini API Error] Max retries exceeded"
 
 def extract_pdf_ocr(pdf_path):
     print(f"Opening: {pdf_path}")
