@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import pypdf; r=pypdf.PdfReader\\(r''C:\\\\Users\\\\杢之助\\\\2nd-Brain\\\\04_アウトプット\\\\pdf_pages\\\\260331_予想どおりに不合理（ダン・アリエリー著）.pdf''\\); print\\(len\\(r.pages\\)\\)\")",
+      "Bash(python -c \":*)",
+      "Read(//c/Users/杢之助/2nd-Brain/**)",
+      "Bash(python \"00_システム/devtools/pdf_ocr_gemini.py\" \"04_アウトプット/ocr_output_arielly.md\" \"04_アウトプット/pdf_pages/260331_予想どおりに不合理（ダン・アリエリー著）.pdf\")"
+    ]
+  }
+}
