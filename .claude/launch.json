@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "kakogawa-video (Remotion Studio)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start", "--prefix", "99_Sbox/04_プロジェクト・実務/kakogawa-video"],
+      "port": 3000
+    }
+  ]
+}
